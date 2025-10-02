@@ -25,8 +25,8 @@ contract CustomVault is ReentrancyGuard, Ownable {
     
     uint256 public totalDeposits;
     uint256 public totalBorrows;
-    uint256 public interestRate = 500; // 5% APR in basis points
-    uint256 public collateralFactor = 8000; // 80% in basis points
+    uint256 public interestRate = 500; // 5% APR here
+    uint256 public collateralFactor = 8000; // 80% here
     
     event Deposit(address indexed user, uint256 amount);
     event Withdraw(address indexed user, uint256 amount);
@@ -55,7 +55,7 @@ contract CustomVault is ReentrancyGuard, Ownable {
         balances[msg.sender] -= amount;
         totalDeposits -= amount;
         
-        // Check if withdrawal maintains healthy collateral ratio
+        //  healthy collateral ratio
         if (borrowBalances[msg.sender] > 0) {
             require(_isHealthy(msg.sender), "Withdrawal would make position unhealthy");
         }

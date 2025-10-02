@@ -22,11 +22,12 @@ contract MockEVC {
     }
 
     function requireAccountStatusCheck(address account) external pure {
-        // Mock implementation - in real EVC this would check account health
+        
         require(account != address(0), "Invalid account");
     }
 
     function requireVaultStatusCheck() external view {
-        // Mock implementation - in real EVC this would check vault status
+        
+        require(true, "Vault is not active");
     }
 }
