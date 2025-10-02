@@ -46,8 +46,8 @@ A comprehensive DeFi lending protocol built with Ethereum Vault Connector (EVC) 
 
 ### 1. Clone the Repository
 ```bash
-git clone <your-repo-url>
-cd custom-evc-vault
+git clone https://github.com/lijnati/DeFi-lending-protocol.git
+cd DeFi-lending-protocol
 ```
 
 ### 2. Install Dependencies
