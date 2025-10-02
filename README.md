@@ -2,6 +2,8 @@
 
 A comprehensive DeFi lending protocol built with Ethereum Vault Connector (EVC) integration, featuring a full-stack implementation with smart contracts and a React frontend interface.
 
+<!-- Add screenshot -->
+![Screenshot](./evcscreenshot.png)
 ## 🚀 Features
 
 ### Smart Contract Features
