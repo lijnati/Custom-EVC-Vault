@@ -7,17 +7,17 @@ describe("CustomVault", function () {
     beforeEach(async function () {
         [owner, user1, user2] = await ethers.getSigners();
 
-        // Deploy MockEVC
+        // deploy MockEVC here
         const MockEVC = await ethers.getContractFactory("MockEVC");
         mockEVC = await MockEVC.deploy();
         await mockEVC.waitForDeployment();
 
-        // Deploy MockToken
+        // deploy MockToken here
         const MockToken = await ethers.getContractFactory("MockToken");
         mockToken = await MockToken.deploy("Test Token", "TEST");
         await mockToken.waitForDeployment();
 
-        // Deploy CustomVault
+        // deploy CustomVault here
         const CustomVault = await ethers.getContractFactory("CustomVault");
         customVault = await CustomVault.deploy(await mockEVC.getAddress(), await mockToken.getAddress());
         await customVault.waitForDeployment();

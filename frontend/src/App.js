@@ -264,8 +264,8 @@ function App() {
   return (
     <div className="container">
       <div className="header">
-        <h1>EVC Custom Vault</h1>
-        <p>Deposit, borrow, and manage your collateralized positions</p>
+        <h1>⚡ EVC Vault</h1>
+        <p>Next-generation DeFi lending with EVC  <br /> <b>Deposit, borrow, and manage collateralized positions</b></p>
       </div>
 
       <div className="wallet-section">
@@ -276,63 +276,64 @@ function App() {
               onClick={connectWallet}
               disabled={loading}
             >
-              {loading ? 'Connecting...' : 'Connect Wallet'}
+              {loading ? '🔄 Connecting...' : '🔗 Connect Wallet'}
             </button>
           </div>
         ) : (
           <div className="wallet-info">
-            <div>
-              <div className="address">{account.slice(0, 6)}...{account.slice(-4)}</div>
-              <div className="balance">{parseFloat(balance).toFixed(4)} ETH</div>
+            <div className="wallet-details">
+              <div className="address">  {account.slice(0, 6)}...{account.slice(-4)}</div>
+              <div className="balance">💰 {parseFloat(balance).toFixed(4)} ETH</div>
             </div>
             <button className="connect-button" onClick={disconnect}>
-              Disconnect
+               Disconnect
             </button>
           </div>
         )}
       </div>
 
-      {error && <div className="error">{error}</div>}
-      {success && <div className="success">{success}</div>}
+      {error && <div className="error">❌ {error}</div>}
+      {success && <div className="success">✅ {success}</div>}
 
       {account && (
         <>
           <div className="vault-card">
-            <h3>Vault Overview</h3>
+            <h3>📊 Portfolio Overview</h3>
             <div className="stats-grid">
               <div className="stat-item">
                 <div className="stat-value">{parseFloat(vaultData.userDeposit).toFixed(4)}</div>
-                <div className="stat-label">Your Deposit</div>
+                <div className="stat-label">💎 Your Collateral</div>
               </div>
               <div className="stat-item">
                 <div className="stat-value">{parseFloat(vaultData.userBorrow).toFixed(4)}</div>
-                <div className="stat-label">Your Debt</div>
+                <div className="stat-label">📉 Your Debt</div>
               </div>
               <div className="stat-item">
                 <div className="stat-value">{parseFloat(vaultData.tokenBalance).toFixed(4)}</div>
-                <div className="stat-label">Token Balance</div>
+                <div className="stat-label">🪙 Wallet Balance</div>
               </div>
               <div className="stat-item">
                 <div className="stat-value">{parseFloat(vaultData.totalDeposits).toFixed(2)}</div>
-                <div className="stat-label">Total Deposits</div>
+                <div className="stat-label">🏦 Total TVL</div>
               </div>
             </div>
             
             <div className={`health-indicator health-${healthStatus.status}`}>
+              {healthStatus.status === 'healthy' ? '✅' : healthStatus.status === 'warning' ? '⚠️' : '🚨'} 
               Health Factor: {healthStatus.text}
             </div>
           </div>
 
           <div className="vault-grid">
             <div className="vault-card">
-              <h3>Deposit Collateral</h3>
+              <h3>💰 Deposit Collateral</h3>
               <div className="input-group">
-                <label>Amount to Deposit</label>
+                <label>💎 Amount to Deposit</label>
                 <input
                   type="number"
                   value={depositAmount}
                   onChange={(e) => setDepositAmount(e.target.value)}
-                  placeholder="0.0"
+                  placeholder="Enter amount..."
                   step="0.01"
                 />
               </div>
@@ -341,19 +342,19 @@ function App() {
                 onClick={handleDeposit}
                 disabled={loading || !depositAmount}
               >
-                {loading ? 'Processing...' : 'Deposit'}
+                {loading ? '⏳ Processing...' : '💰 Deposit'}
               </button>
             </div>
 
             <div className="vault-card">
-              <h3>Withdraw Collateral</h3>
+              <h3>📤 Withdraw Collateral</h3>
               <div className="input-group">
-                <label>Amount to Withdraw</label>
+                <label>📤 Amount to Withdraw</label>
                 <input
                   type="number"
                   value={withdrawAmount}
                   onChange={(e) => setWithdrawAmount(e.target.value)}
-                  placeholder="0.0"
+                  placeholder="Enter amount..."
                   step="0.01"
                   max={vaultData.userDeposit}
                 />
@@ -363,19 +364,19 @@ function App() {
                 onClick={handleWithdraw}
                 disabled={loading || !withdrawAmount || parseFloat(vaultData.userDeposit) === 0}
               >
-                {loading ? 'Processing...' : 'Withdraw'}
+                {loading ? '⏳ Processing...' : '📤 Withdraw'}
               </button>
             </div>
 
             <div className="vault-card">
-              <h3>Borrow</h3>
+              <h3>📈 Borrow Funds</h3>
               <div className="input-group">
-                <label>Amount to Borrow</label>
+                <label>📈 Amount to Borrow</label>
                 <input
                   type="number"
                   value={borrowAmount}
                   onChange={(e) => setBorrowAmount(e.target.value)}
-                  placeholder="0.0"
+                  placeholder="Enter amount..."
                   step="0.01"
                 />
               </div>
@@ -384,19 +385,19 @@ function App() {
                 onClick={handleBorrow}
                 disabled={loading || !borrowAmount || parseFloat(vaultData.userDeposit) === 0}
               >
-                {loading ? 'Processing...' : 'Borrow'}
+                {loading ? '⏳ Processing...' : '📈 Borrow'}
               </button>
             </div>
 
             <div className="vault-card">
-              <h3>Repay Debt</h3>
+              <h3>💳 Repay Debt</h3>
               <div className="input-group">
-                <label>Amount to Repay</label>
+                <label>💳 Amount to Repay</label>
                 <input
                   type="number"
                   value={repayAmount}
                   onChange={(e) => setRepayAmount(e.target.value)}
-                  placeholder="0.0"
+                  placeholder="Enter amount..."
                   step="0.01"
                   max={vaultData.userBorrow}
                 />
@@ -406,7 +407,7 @@ function App() {
                 onClick={handleRepay}
                 disabled={loading || !repayAmount || parseFloat(vaultData.userBorrow) === 0}
               >
-                {loading ? 'Processing...' : 'Repay'}
+                {loading ? '⏳ Processing...' : '💳 Repay'}
               </button>
             </div>
           </div>
